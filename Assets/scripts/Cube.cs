@@ -69,6 +69,5 @@ public class Cube : MonoBehaviour
     {
         _generation = generation;
         _requiredSplitChance = _maxSplitChance / (int)Math.Pow(_spitChanceDecayFactor, generation);
-        Debug.Log("Chance" + _requiredSplitChance);
     }
 }
