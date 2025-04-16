@@ -20,7 +20,7 @@ public class Cube : MonoBehaviour
     public int Generation => _generation;
     public event Action Clicked;
 
-    private void Start()
+    private void Awake()
     {
        _requiredSplitChance = _maxSplitChance;
     }
