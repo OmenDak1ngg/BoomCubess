@@ -1073,13 +1073,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1793427797309841803, guid: 63487dd9d6768cc408c8fdea9d9ea65f, type: 3}
+      propertyPath: _effect
+      value: 
+      objectReference: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+    - target: {fileID: 1793427797309841803, guid: 63487dd9d6768cc408c8fdea9d9ea65f, type: 3}
       propertyPath: _requiredSplitChance
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857860563956730497, guid: 63487dd9d6768cc408c8fdea9d9ea65f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3557475174937399427, guid: 63487dd9d6768cc408c8fdea9d9ea65f, type: 3}
       propertyPath: _prefab
       value: 
       objectReference: {fileID: 1793427797309841803, guid: 63487dd9d6768cc408c8fdea9d9ea65f, type: 3}
+    - target: {fileID: 5205064529442932312, guid: 63487dd9d6768cc408c8fdea9d9ea65f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7502521948109332718, guid: 63487dd9d6768cc408c8fdea9d9ea65f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
