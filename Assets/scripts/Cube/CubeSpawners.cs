@@ -22,14 +22,13 @@ public class CubeSpawners : MonoBehaviour
     private void SpawnCubes()
     {
         int countOfCubes = Random.Range(_minCubesCount, _maxCubesCount);
-
         Cube[] newCubes = new Cube[countOfCubes];
 
-        for(int i = 0; i < countOfCubes; i++)
+        for (int i = 0; i < countOfCubes; i++)
         {
             newCubes[i] = Instantiate(_prefab);
         }
         
-        _exploder.ExplodeCube(newCubes);
+        _exploder.ExplodeCubes(newCubes);
     }
 }

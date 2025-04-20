@@ -36,6 +36,7 @@ public class Cube : MonoBehaviour
         if (isSplitted)
         {
             Clicked?.Invoke();
+
         }
 
         _explotion.Explode();
