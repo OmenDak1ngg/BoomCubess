@@ -4,18 +4,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Cube : MonoBehaviour
 {
+    [SerializeField] private Exploder _exploder;
+
     private int _requiredSplitChance;
     private int _minSplitChance = 1;
     private int _maxSplitChance = 100;
     private int _spitChanceDecayFactor = 2;
-    private int _generation = 0;
     private Explotion _explotion;
 
+    private int _generation = 0;
     private Rigidbody _rigidbody;
     private Renderer _renderer;
 
     public event Action Clicked;
 
+    public Exploder Exploder => _exploder;
     public Rigidbody Rigidbody => _rigidbody;
     public Renderer Renderer => _renderer;
     public int Generation => _generation;
@@ -37,6 +40,10 @@ public class Cube : MonoBehaviour
         {
             Clicked?.Invoke();
 
+        }
+        else
+        {
+            _exploder.ExplodeCubes();
         }
 
         _explotion.Explode();

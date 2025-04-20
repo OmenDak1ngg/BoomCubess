@@ -4,10 +4,16 @@ public class CubeSpawners : MonoBehaviour
 {
     [SerializeField] private Cube _cube;
     [SerializeField] private Cube _prefab;
-    [SerializeField] private Exploder _exploder;
+
+    private Exploder _exploder;
 
     private int _minCubesCount = 2;
     private int _maxCubesCount = 6;
+
+    private void Awake()
+    {
+        _exploder = _cube.Exploder;
+    }
 
     private void OnEnable()
     {
@@ -28,7 +34,7 @@ public class CubeSpawners : MonoBehaviour
         {
             newCubes[i] = Instantiate(_prefab);
         }
-        
-        _exploder.ExplodeCubes(newCubes);
+
+        _exploder.ExplodeNewCubes(newCubes);
     }
 }
