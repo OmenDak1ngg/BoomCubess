@@ -81,6 +81,7 @@ Transform:
   m_Children:
   - {fileID: 5965299695251431137}
   - {fileID: 6248552197816750880}
+  - {fileID: 8580329618305069552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1798401680375372589
@@ -169,6 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dae4a13481e784d89bd05bc5b12063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rb: {fileID: 0}
+  Rend: {fileID: 0}
 --- !u!54 &5204783836126945495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -225,8 +228,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8580329618305069552}
+  m_Children: []
   m_Father: {fileID: 5348063299894635466}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2441829383813271324
@@ -244,6 +246,7 @@ MonoBehaviour:
   _cube: {fileID: 7620098629608779074}
   _prefab: {fileID: 7620098629608779074}
   _colorChanger: {fileID: 1072011004990213252}
+  _exploder: {fileID: 0}
 --- !u!1 &8955151295971386536
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +277,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5965299695251431137}
+  m_Father: {fileID: 5348063299894635466}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1072011004990213252
 MonoBehaviour:

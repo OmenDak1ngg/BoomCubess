@@ -4,13 +4,10 @@ public class CubeSpawners : MonoBehaviour
 {
     [SerializeField] private Cube _cube;
     [SerializeField] private Cube _prefab;
-    [SerializeField] private ColorChanger _colorChanger;
+    [SerializeField] private Exploder _exploder;
 
-    private float _explotionForce = 2;
     private int _minCubesCount = 2;
     private int _maxCubesCount = 6;
-
-    private int _scaleReduce = 2;
 
     private void OnEnable()
     {
@@ -26,14 +23,13 @@ public class CubeSpawners : MonoBehaviour
     {
         int countOfCubes = Random.Range(_minCubesCount, _maxCubesCount);
 
+        Cube[] newCubes = new Cube[countOfCubes];
+
         for(int i = 0; i < countOfCubes; i++)
         {
-            Cube newCube = Instantiate(_prefab);
-            
-            newCube.ReduceSplitChance(_cube.Generation);
-            newCube.GetComponent<Rigidbody>().AddForce(_explotionForce * Random.onUnitSphere, ForceMode.Impulse);
-            newCube.transform.localScale /= _scaleReduce;
-            newCube.GetComponent<Renderer>().material = _colorChanger.SetRandomMaterial();
+            newCubes[i] = Instantiate(_prefab);
         }
+        
+        _exploder.ExplodeCube(newCubes);
     }
 }

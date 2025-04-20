@@ -20,9 +20,9 @@ public class CubeClicker : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit))
             {
-                Cube cube = hit.collider.GetComponent<Cube>();
+                bool isCube = hit.collider.TryGetComponent<Cube>(out Cube cube);
 
-                if(cube != null)
+                if(isCube)
                 {
                     cube.OnClicked();
                 }

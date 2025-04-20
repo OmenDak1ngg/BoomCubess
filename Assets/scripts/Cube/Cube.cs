@@ -11,12 +11,19 @@ public class Cube : MonoBehaviour
     private int _generation = 0;
     private Explotion _explotion;
 
+    private Rigidbody _rigidbody;
+    private Renderer _renderer;
+
     public event Action Clicked;
 
+    public Rigidbody Rigidbody => _rigidbody;
+    public Renderer Renderer => _renderer;
     public int Generation => _generation;
 
     private void Awake()
     {
+        _renderer = GetComponent<Renderer>();
+        _rigidbody  = GetComponent<Rigidbody>();
         _explotion = GetComponentInChildren<Explotion>();
        _requiredSplitChance = _maxSplitChance;
     }
