@@ -3,11 +3,16 @@ using UnityEngine;
 public class CubeClicker : MonoBehaviour
 {
     private static int LeftMouseButton = 0;
+    private Cube[] _newCubes;
 
     private Camera _camera;
+    private CubeSpawner _cubeSpawner;
+    private Exploder _exploder;
 
     private void Start()
     {
+        _exploder = FindFirstObjectByType<Exploder>();
+        _cubeSpawner = FindFirstObjectByType<CubeSpawner>();
         _camera = Camera.main;
     }
 
@@ -24,7 +29,17 @@ public class CubeClicker : MonoBehaviour
 
                 if(isCube)
                 {
-                    cube.HandleClickAndSplit();
+                    if (cube.CanSplit())
+                    {
+                        _newCubes = _cubeSpawner.SpawnAndGetCubes();
+                        _exploder.ExplodeNewCubes(_newCubes, cube);
+                    }
+                    else
+                    {
+                        _exploder.ExplodeCubes(cube);
+                    }
+
+                    _exploder.EffectExplode(cube);
                 }
             }
         }
