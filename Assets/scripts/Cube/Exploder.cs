@@ -25,9 +25,11 @@ public class Exploder : MonoBehaviour
 
         foreach (Collider collider in explodableObjects)
         {
-            if (collider.TryGetComponent(out Cube cube))
+            bool isCube = collider.TryGetComponent<Cube>(out Cube cube);
+            
+            if (isCube)
             {
-                distance = Vector3.Distance(_parent.transform.position, collider.transform.position);
+                distance = Vector3.SqrMagnitude(_parent.transform.position - collider.transform.position);
                 _explotionForce *= Mathf.Clamp(_explotionRadius / distance, _minExplotionForce, _maxExplotionForce);
                 ExplotionDirection = (collider.transform.position - _parent.transform.position).normalized;
 

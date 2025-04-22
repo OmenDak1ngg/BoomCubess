@@ -297,8 +297,8 @@ MonoBehaviour:
   _parent: {fileID: 2332660290518556375}
   _colorChanger: {fileID: 7217444430031907527}
   _baseScaleOfCube: {x: 1, y: 1, z: 1}
-  _maxExplotionForce: 3
-  _minExplotionForce: 0.1
+  _maxExplotionForce: 5.43
+  _minExplotionForce: 1.84
 --- !u!1 &6968082904139907740
 GameObject:
   m_ObjectHideFlags: 0

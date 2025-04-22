@@ -24,7 +24,7 @@ public class CubeClicker : MonoBehaviour
 
                 if(isCube)
                 {
-                    cube.OnClicked();
+                    cube.HandleClickAndSplit();
                 }
             }
         }

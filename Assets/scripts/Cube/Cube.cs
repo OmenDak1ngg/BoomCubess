@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Renderer))]
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private Exploder _exploder;
+    [SerializeField] public Exploder Exploder { get; private set; }
 
     private int _requiredSplitChance;
     private int _minSplitChance = 1;
@@ -13,37 +14,34 @@ public class Cube : MonoBehaviour
     private Explotion _explotion;
 
     private int _generation = 0;
-    private Rigidbody _rigidbody;
-    private Renderer _renderer;
 
     public event Action Clicked;
 
-    public Exploder Exploder => _exploder;
-    public Rigidbody Rigidbody => _rigidbody;
-    public Renderer Renderer => _renderer;
+    public Rigidbody Rigidbody { get; private set; }
+    public Renderer Renderer { get; private set; }
     public int Generation => _generation;
 
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
-        _rigidbody  = GetComponent<Rigidbody>();
+        Renderer = GetComponent<Renderer>();
+        Rigidbody = GetComponent<Rigidbody>();
         _explotion = GetComponentInChildren<Explotion>();
        _requiredSplitChance = _maxSplitChance;
     }
 
-    public void OnClicked()
+    public void HandleClickAndSplit()
     {
         _generation++;
-        bool isSplitted = UnityEngine.Random.Range(_minSplitChance, _maxSplitChance) <= _requiredSplitChance;
+        bool canSplit = UnityEngine.Random.Range(_minSplitChance, _maxSplitChance) <= _requiredSplitChance;
 
-        if (isSplitted)
+        if (canSplit)
         {
             Clicked?.Invoke();
 
         }
         else
         {
-            _exploder.ExplodeCubes();
+            Exploder.ExplodeCubes();
         }
 
         _explotion.Explode();
