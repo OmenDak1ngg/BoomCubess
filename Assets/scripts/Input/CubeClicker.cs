@@ -31,15 +31,15 @@ public class CubeClicker : MonoBehaviour
                 {
                     if (cube.CanSplit())
                     {
-                        _newCubes = _cubeSpawner.SpawnAndGetCubes();
-                        _exploder.ExplodeNewCubes(_newCubes, cube);
+                        _newCubes = _cubeSpawner.SpawnAndGetCubes(cube);
+                        _exploder.BlastNewCubes(_newCubes, cube);
                     }
                     else
                     {
-                        _exploder.ExplodeCubes(cube);
+                        _exploder.BlastNearbyCubes(cube);
                     }
 
-                    _exploder.EffectExplode(cube);
+                    _exploder.Explode(cube);
                 }
             }
         }

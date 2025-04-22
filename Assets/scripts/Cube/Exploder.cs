@@ -5,21 +5,22 @@ public class Exploder : MonoBehaviour
 {
     [SerializeField] private Vector3 _baseScaleOfCube;
     [SerializeField] private float _maxExplotionForce = 10f;
-    [SerializeField] private float _minExplotionForce = 1f;
+    [SerializeField] private float _baseExplotionRadius = 5f;
     [SerializeField] private ParticleSystem _effect;
 
-    private float _baseExplotionRadius = 2f;
     private float _explotionRadius;
-
+    private float _minExplotionForce = 0f;
     private float _explotionForce;
 
     private int _scaleReduce = 2;
 
-    public void ExplodeCubes(Cube epicenter)
+    public void BlastNearbyCubes(Cube epicenter)
     {
         _explotionRadius = _baseExplotionRadius * (_baseScaleOfCube.x / epicenter.transform.localScale.x);
-        _explotionForce = _minExplotionForce * (_baseScaleOfCube.x / epicenter.transform.localScale.x);
-        float distance;
+        _explotionForce = (_baseScaleOfCube.x / epicenter.transform.localScale.x);
+        float sqrDistance;
+        float sqrRadius;
+
         Vector3 ExplotionDirection;
         Collider[] explodableObjects = Physics.OverlapSphere(epicenter.transform.position, _explotionRadius);
 
@@ -29,16 +30,19 @@ public class Exploder : MonoBehaviour
 
             if (isCube)
             {
-                distance = Vector3.SqrMagnitude(cube.transform.position - collider.transform.position);
-                _explotionForce *= Mathf.Clamp(_explotionRadius / distance, _minExplotionForce, _maxExplotionForce);
-                ExplotionDirection = (collider.transform.position - cube.transform.position).normalized;
+                sqrDistance = Vector3.SqrMagnitude(cube.transform.position - epicenter.transform.position);
 
-                cube.Rigidbody.AddForce(_explotionForce * ExplotionDirection, ForceMode.Impulse);
+                sqrRadius = _explotionRadius * _explotionRadius;
+
+                float currenForce = Mathf.Clamp(_explotionRadius / sqrDistance, _minExplotionForce, _maxExplotionForce);
+                ExplotionDirection = (cube.transform.position - epicenter.transform.position).normalized;
+
+                cube.Rigidbody.AddForce(currenForce * ExplotionDirection, ForceMode.Impulse);
             }
         }
     }
 
-    public void ExplodeNewCubes(Cube[] newCubes, Cube parent)
+    public void BlastNewCubes(Cube[] newCubes, Cube parent)
     {
         foreach (Cube cube in newCubes)
         {
@@ -49,10 +53,10 @@ public class Exploder : MonoBehaviour
         }
     }
 
-    public void EffectExplode(Cube epicenter)
+    public void Explode(Cube epicenter)
     {
         Instantiate(_effect, epicenter.transform.position, epicenter.transform.rotation);
 
-        Destroy(epicenter);
+        Destroy(epicenter.gameObject);
     }
 }
